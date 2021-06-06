@@ -1,4 +1,4 @@
-import * as actions from './actiontypes';
+import * as actions from './actiontypes.js';
 
 let id = 0;
 
