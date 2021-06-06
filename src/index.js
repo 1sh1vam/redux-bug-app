@@ -5,4 +5,4 @@ console.log("hello hmtl")
 
 store.dispatch(bugAdded('bug 1'))
 
-console.log(store.getState)
+console.log(store.getState())
