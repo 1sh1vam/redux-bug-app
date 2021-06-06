@@ -3,6 +3,7 @@ import * as actions from './actiontypes.js';
 let bugId = 0;
 
 export default function reducer(state = [], action) {
+    console.log(action)
     switch (action.type) {
         case actions.BUG_ADDED:
             return [
