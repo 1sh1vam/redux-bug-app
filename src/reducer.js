@@ -9,17 +9,17 @@ export default function reducer(state = [], action) {
                 ...state,
                 {
                     bugId: ++id,
-                    description: action.description,
+                    description: action.payload.description,
                     resolved: false
                 }
             ]
 
         case actions.BUG_REMOVED:
-            return state.filter(bug => bug.id !== action.id)
+            return state.filter(bug => bug.id !== action.payload.id)
 
         case actions.BUG_RESOLVED:
             return state.map(bug => {
-                if (bug.id === action.id) {
+                if (bug.id === action.payload.id) {
                     return { ...bug, resolved: true }
                 }
                 return bug
