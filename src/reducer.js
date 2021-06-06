@@ -1,6 +1,6 @@
 import * as actions from './actiontypes.js';
 
-let id = 0;
+let bugId = 0;
 
 export default function reducer(state = [], action) {
     switch (action.type) {
@@ -8,7 +8,7 @@ export default function reducer(state = [], action) {
             return [
                 ...state,
                 {
-                    bugId: ++id,
+                    id: ++bugId,
                     description: action.payload.description,
                     resolved: false
                 }
