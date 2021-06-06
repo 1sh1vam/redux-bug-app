@@ -3,7 +3,7 @@ import * as actions from './actiontypes';
 let id = 0;
 
 export default function reducer(state = [], action) {
-    switch (action.type) {
+    switch (action.TYPE) {
         case actions.BUG_ADDED:
             return [
                 ...state,
