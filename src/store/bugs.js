@@ -1,4 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
+import { createSelector } from 'reselect';
 
 let id = 0;
 // with seperate createAction and createReducer
@@ -55,3 +56,15 @@ const slice = createSlice({
 export const { bugAdded, bugRemoved, bugResolved } = slice.actions
 
 export default slice.reducer
+
+// export const getUnresolvedBugs = state => {
+//     return state.entities.bugs.filter(bug => !bug.resolved)
+// }
+
+// to resolve the expensive call and rerendering we will use memoization.
+//  we will use a module called "reselect" to implement memoization.
+
+export const getUnresolvedBugs = createSelector(
+    state => state.entities.bugs,
+    bugs => bugs.filter(bug => !bug.resolved)
+)
