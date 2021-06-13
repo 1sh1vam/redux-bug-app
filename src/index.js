@@ -1,6 +1,7 @@
 import store from './store/store';
 import { projectAdded } from './store/projects';
-import { bugAdded, bugResolved, assignBug, getUnresolvedBugs, getBugsToTeamMember } from './store/bugs';
+import { bugAdded, bugResolved, getUnresolvedBugs, getBugsToTeamMember } from './store/bugs';
+import { addUser, assignBug } from './store/users';
 
 store.subscribe(() => {
     console.log(store.getState())
@@ -46,9 +47,9 @@ console.log(x === y)
 
 // Implementing assign bug to a team member and getting the list of bugs assigned to a team member.
 
-console.log(assignBug)
-store.dispatch(assignBug({ bugId: 0, member: 'shivam' }))
-store.dispatch(assignBug({ bugId: 2, member: 'shivam' }))
+store.dispatch(addUser({ name: 'shivam' }))
+store.dispatch(assignBug({ name: 'shivam', bugId: 0 }))
+store.dispatch(assignBug({ name: 'shivam', bugId: 2 }))
 
-const bugstoShivam = getBugsToTeamMember('shivam')(store.getState())
-console.log('shivam', bugstoShivam)
+const z = getBugsToTeamMember('shivam')(store.getState())
+console.log("z", z)

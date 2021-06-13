@@ -49,12 +49,6 @@ const slice = createSlice({
         bugRemoved: (bugs, action) => {
             const index = bugs.findIndex(bug => bug.bugId === action.payload.id)
             bugs.splice(index, 1)
-        },
-
-        assignBug: (bugs, action) => {
-            console.log('assign', action)
-            const index = bugs.findIndex(bug => bug.bugId === action.payload.bugId)
-            bugs[index].member = action.payload.member
         }
     }
 })
@@ -78,6 +72,18 @@ export const getUnresolvedBugs = createSelector(
 export const getBugsToTeamMember = (member) => {
     return createSelector(
         state => state.entities.bugs,
-        bugs => bugs.filter(bug => bug.member === member)
+        state => state.entities.users,
+        (bugs, users) => {
+            const user = users.filter(user => user.name === member)
+            const bugIds = user[0].bugs
+            console.log(bugIds)
+            const assignedBugs = bugs.filter(bug => {
+                if (bugIds.includes(bug.bugId)) {
+                    return bug
+                }
+            })
+
+            return assignedBugs
+        }
     )
 }
